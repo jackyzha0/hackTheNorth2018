@@ -15,8 +15,8 @@
         android:layout_marginBottom="350px"
         android:layout_alignParentBottom="true"/>
 
-    <ImageButton
-        android:id="@+id/BiometricsButton"
+    <ImageView
+        android:id="@+id/Biometrics"
         android:layout_width="150px"
         android:layout_height="250px"
         android:layout_alignParentBottom="true"
@@ -34,6 +34,16 @@
         android:layout_marginBottom="200dp"
         android:ems="8"
         android:inputType="numberDecimal" />
+
+    <ImageButton
+        android:id="@+id/SendMoney"
+        android:layout_width="130px"
+        android:layout_height="130px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="37dp"
+        android:layout_marginBottom="200dp"
+        android:src="@drawable/arrow" />
 
     <TextView
         android:id="@+id/paraLabel"

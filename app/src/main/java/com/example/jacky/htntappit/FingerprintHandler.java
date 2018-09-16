@@ -7,11 +7,11 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.media.Image;
 import android.os.Build;
 import android.os.CancellationSignal;
-import android.support.v4.content.ContextCompat;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import static com.example.jacky.htntappit.VerifyBoolean.*;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
@@ -34,28 +34,29 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     public void onAuthenticationError(int errorCode, CharSequence errString) {
 
         this.update("There was an Auth Error. " + errString, false);
-
+        setVerify(false);
     }
 
     @Override
     public void onAuthenticationFailed() {
 
         this.update("Auth Failed. ", false);
-
+        setVerify(false);
     }
 
     @Override
     public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
 
         this.update("Error: " + helpString, false);
-
+        setVerify(false);
     }
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
-
-        this.update("You can now access the app.", true);
-
+        if(getBalance()) {
+            this.update("Your balance can now be sent.", true);
+            setVerify(true);
+        }
     }
 
     private void update(String s, boolean b) {

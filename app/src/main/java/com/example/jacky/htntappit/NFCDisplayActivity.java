@@ -9,6 +9,8 @@ import android.os.Parcelable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.example.jacky.htntappit.VerifyBoolean.*;
+
 /**
  * Created by mshrestha on 7/23/2014.
  */
@@ -32,7 +34,7 @@ public class NFCDisplayActivity extends Activity {
         super.onResume();
         //setContentView(R.layout.activity_nfc_display);
         Intent intent = getIntent();
-        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction()) && getVerify()) {
             Parcelable[] rawMessages = intent.getParcelableArrayExtra(
                     NfcAdapter.EXTRA_NDEF_MESSAGES);
 

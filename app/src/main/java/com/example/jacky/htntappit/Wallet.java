@@ -3,7 +3,9 @@ package com.example.jacky.htntappit;
 import android.annotation.TargetApi;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.StrictMode;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -18,6 +20,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+
+import static com.example.jacky.htntappit.VerifyBoolean.*;
 
 
 public class Wallet {
@@ -57,7 +61,14 @@ public class Wallet {
             return true;
         }
     }
-    public static boolean perfTransaction(double amt, String to) {
+    public boolean perfTransaction(double amt, String to) {
+        try {
+            if (getBalance() <= amt) {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //check if parties have enough money
         //check for biometric confirmation
         //send moneey
@@ -77,10 +88,12 @@ public class Wallet {
         try {
             InputStream in_ = new BufferedInputStream(urlConnection.getInputStream());
             return Double.parseDouble(convertStreamToString(in_));
+
         } finally {
             urlConnection.disconnect();
         }
     }
+
 
     public Wallet(String deviceID) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -95,7 +108,7 @@ public class Wallet {
 
     }
 }
-        //        public static String ping(String body) {
+//        public static String ping(String body) {
 //            if (deviceID=="f092fec5-5589-4e6e-a40f-75b4d0997c1a") {
 //                setAddress("0x6B51a34d1a3A848bF498b3BEb21671F9D1fF726A");
 //            } else {

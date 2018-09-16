@@ -9,8 +9,10 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.view.View;
 import java.util.UUID;
@@ -41,6 +43,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import static com.example.jacky.htntappit.VerifyBoolean.*;
 
 public class NFCActivity extends Activity implements NfcAdapter.CreateNdefMessageCallback {
 
@@ -50,6 +53,7 @@ public class NFCActivity extends Activity implements NfcAdapter.CreateNdefMessag
     private FingerprintManager fingerprintManager;
     private KeyguardManager keyguardManager;
     private TextView mParaLabel;
+    private ImageView Biometrics;
 
     private KeyStore keyStore;
     private Cipher cipher;
@@ -60,11 +64,12 @@ public class NFCActivity extends Activity implements NfcAdapter.CreateNdefMessag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setBalance(false);
+        setVerify(false);
         String imei = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
         wallet = new Wallet(imei);
 
         String text = wallet.getAddress();
-
         setContentView(R.layout.activity_nfc);
         NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -81,12 +86,15 @@ public class NFCActivity extends Activity implements NfcAdapter.CreateNdefMessag
         mAdapter.setNdefPushMessageCallback(this, this);
 
         mParaLabel = (TextView) findViewById(R.id.paraLabel);
+        Biometrics = (ImageView) findViewById(R.id.Biometrics);
 
         // Check 1: Android version should be greater or equal to Marshmallow
         // Check 2: Device has Fingerprint Scanner
         // Check 3: Have permission to use fingerprint scanner in the app
         // Check 4: Lock screen is secured with atleast 1 type of lock
         // Check 5: Atleast 1 Fingerprint is registered
+
+
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
@@ -107,11 +115,16 @@ public class NFCActivity extends Activity implements NfcAdapter.CreateNdefMessag
 
             } else if (!fingerprintManager.hasEnrolledFingerprints()){
 
-                mParaLabel.setText("You should add atleast 1 Fingerprint to use this Feature");
+                mParaLabel.setText("You should add at least 1 Fingerprint to use this Feature");
 
             } else {
+                setBalance(false);
+                    mParaLabel.setText("Enter the amount you would like to send");
+                    final ImageButton button = findViewById(R.id.SendMoney);
+                    // define button, if button pressed, sendbalance(true);
+                }
 
-                mParaLabel.setText("Place your Finger on Scanner to Access the App.");
+//                mParaLabel.setText("Place your Finger on Scanner to Access the App.");
 
                 generateKey();
 
@@ -125,7 +138,6 @@ public class NFCActivity extends Activity implements NfcAdapter.CreateNdefMessag
             }
 
         }
-    }
     @TargetApi(Build.VERSION_CODES.M)
     private void generateKey() {
 

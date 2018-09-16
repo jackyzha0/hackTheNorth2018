@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".NFCActivity">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/logowithalpha"
+        android:layout_marginBottom="350px"
+        android:layout_alignParentBottom="true"/>
+
+    <ImageButton
+        android:id="@+id/BiometricsButton"
+        android:layout_width="150px"
+        android:layout_height="250px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="109dp"
+        android:background="#f9f9f9"
+        android:src="@drawable/finger" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        android:ems="8"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/paraLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="92dp"/>
+
+    <TextView
+        android:id="@+id/walletid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:lines="1"
+        android:text="test1"
+        android:textColor="#bababa"
+        android:layout_alignParentBottom="true"/>
+    <!--<EditText-->
+        <!--android:id="@+id/edit_text_field"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="Type a message"-->
+        <!--android:lines="3"-->
+        <!--android:textSize="32sp"-->
+        <!--android:gravity="top|left"/>-->
+
+</RelativeLayout>

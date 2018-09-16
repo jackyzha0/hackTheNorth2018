@@ -1,0 +1,43 @@
+buildscript {
+
+    ext.sdk = [
+        min   : 16,
+        target: 27,
+    ]
+
+    ext.versions = [
+        goldfinger: '1.1.1',
+        google    : '27.1.1',
+        junit     : '4.12',
+        mockito   : '2.10.0',
+        rxjava    : '2.1.13'
+    ]
+
+    ext.deps = [
+        appcompat: "com.android.support:appcompat-v7:${versions.google}",
+        junit    : "junit:junit:${versions.junit}",
+        mockito  : "org.mockito:mockito-core:${versions.mockito}",
+        rxjava   : "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
+    ]
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

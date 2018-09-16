@@ -1,0 +1,20 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion sdk.target
+
+    defaultConfig {
+        applicationId "co.infinum.goldfinger.example"
+        minSdkVersion sdk.min
+        targetSdkVersion sdk.target
+    }
+}
+
+dependencies {
+    implementation deps.appcompat
+    implementation deps.rxjava
+    implementation project(':core')
+    implementation project(':rx')
+//    implementation "co.infinum:goldfinger:${versions.goldfinger}"
+//    implementation "co.infinum:goldfinger-rx:${versions.goldfinger}"
+}

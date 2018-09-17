@@ -1,5 +1,10 @@
 # hackthenorth2018 - Tappit - Cryptopayments over NFC
 
+## Brief Summary
+Tappit! is an Android application that allows users to perform secure P2P Ethereum transactions over NFC with biometric verification.
+The whole app was created in 36 hours. Our team went in with whatsoever about Android dev, NFC, or even biometrics so it was amazing to 
+see the whole thing come together
+
 ## Inspiration
 NFC (Near field communication) has become increasingly prevalent with the rise of services like Google/Apple Pay. It's clear that NFC is the future when it comes to mobile payments.
 However, aside from a couple 'Bitcoin debit cards', there are very few players in the cryptocurrency space that are taking advantage of NFC technology, with most wallets requiring one to scan a QR code or enter in an address manually in order to make a payment. We built Tappit to simplify this payment process for merchant and consumers.
